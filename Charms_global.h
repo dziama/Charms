@@ -1,3 +1,8 @@
+/*
+    Ten plik został wygenerowany automatycznie, właściwie nie wiadomo
+    co dokładnie robi, ale jest potrzebny.
+*/
+
 #ifndef CHARMS_GLOBAL_H
 #define CHARMS_GLOBAL_H
 
