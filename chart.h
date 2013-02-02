@@ -27,7 +27,7 @@
 #include <string>
 
 #include "Charms_global.h"
-
+#include "parser/wyrazenie.h"
 using namespace std;
 
 class CHARMSSHARED_EXPORT Chart
@@ -49,6 +49,12 @@ class CHARMSSHARED_EXPORT Chart
 
         // Destruktor. Zwalnia pamięć.
         ~Chart();
+
+        /*
+            Metoda zwracająca wyliczoną wartość funkcji
+            dla podanego argumentu.
+        */
+        double getValue(double x);
 
         // Metody zmieniające styl linii / znaczników punktów.
         void setLineStyle(QPen lineStyle);
@@ -72,6 +78,10 @@ class CHARMSSHARED_EXPORT Chart
 
         QPen& getLineStyle() const;
         QPixmap& getPointMarker() const;
-};
+
+    private:
+        QPen lineStyle;
+        QPixmap pointMarker;
+        Wyrazenie* dane;
 
 #endif // CHART_H

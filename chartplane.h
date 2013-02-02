@@ -13,9 +13,6 @@
         
         c) przyblizanie, oddalanie oraz przesuwanie
         widoku;
-        
-        d) rysowanie legendy, jesli podamy mu
-        odpowiedni obiekt klasy ChartLegend.
 */
 
 #ifndef CHARTPLANE_H
@@ -26,23 +23,28 @@
 
 #include "Charms_global.h"
 #include "chart.h"
-#include "chartlegend.h"
 
 class CHARMSSHARED_EXPORT ChartPlane : public QWidget
 {
     public:
         /*
-            Konstruktor. Przyjmuje dwie opcjonalne
-            wartosci:
+            Konstruktor. Przyjmuje cztery opcjonalne
+            argumenty.
                 - jednostke typu double (mówi o tym,
                 jakie liczby wypisywane sa pod osia
                 liczbowa; dla 5.0 beda to -10, -5, 0, 5, 10, etc.);
-                - wskaznik na obiekt opisujacy uklad,
-                wyglad i polozenie legendy (ChartLegend).
-            Domylnie jednostka jest rowna 1.0, a legenda nie
-            jest wyswietlana.
+
+                - współrzędną x-ową oraz y-ową typu double
+                środka obszaru wyświetlanego;
+
+                - promień obszaru wyświetlanego typu
+                double (czyli to samo, co połowa szerokości
+                i wysokości obszaru).
         */
-        ChartPlane(double unit = 1.0, ChartLegend* legend = NULL);
+        ChartPlane(double unit = 1.0,
+                   double centerX = 0.0,
+                   double centerY = 0.0,
+                   double radius = 10.0);
         ~ChartPlane();
         
         // Zmienia jednostke w trakcie dzialania programu.
@@ -68,11 +70,9 @@ class CHARMSSHARED_EXPORT ChartPlane : public QWidget
             kreskami na osi.
         */
         void zoom(double multiplier);
-        
+
         /*
             Metody dodaja lub usuwaja wykres z plaszczyzny.
-            Jednoczesnie odswiezaja stan legendy, jesli
-            jej wyswietlanie jest wlaczone.
         */
         void addChart(Chart* chart);
         void removeChart(Chart* chart);
