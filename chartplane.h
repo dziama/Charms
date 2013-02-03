@@ -23,6 +23,7 @@
 
 #include "Charms_global.h"
 #include "chart.h"
+#include <vector>
 
 class CHARMSSHARED_EXPORT ChartPlane : public QWidget
 {
@@ -41,7 +42,8 @@ class CHARMSSHARED_EXPORT ChartPlane : public QWidget
                 double (czyli to samo, co połowa szerokości
                 i wysokości obszaru).
         */
-        ChartPlane(double unit = 1.0,
+        ChartPlane(QWidget *parent,
+                   double unit = 1.0,
                    double centerX = 0.0,
                    double centerY = 0.0,
                    double radius = 10.0);
@@ -74,11 +76,24 @@ class CHARMSSHARED_EXPORT ChartPlane : public QWidget
         /*
             Metody dodaja lub usuwaja wykres z plaszczyzny.
         */
-        void addChart(Chart* chart);
+        void addChart(Chart* chart); // <- trzeba zaimplementować! dodaje wykres do wektora.
         void removeChart(Chart* chart);
         
         // Zwraca obiekt obrazka z aktualna zawartoscia plaszczyzny.
         QImage getSnapshot();
+
+        // W reakcji na konieczność odrysowania obiektu...
+        void paintEvent(QPaintEvent *e);
+
+        static const double d = 10;
+
+    private:
+        std::vector<Chart*> *charts;
+        // trzeba zdefiniować wskaźnik na wektor wskaźników na Chart i nazwać go charts.
+        double unit;
+        double centerX;
+        double centerY;
+        double radius;
 };
 
 #endif // CHARTPLANE_H

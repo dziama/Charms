@@ -3,8 +3,8 @@
 #include "parser/wyrazenia.h"
 
 Chart::Chart(string function,
-             QPen lineStyle = QPen(Qt::NoBrush, 1.0),
-             QPixmap pointMarker = QPixmap()):
+             QPen lineStyle,
+             QPixmap pointMarker):
     lineStyle(lineStyle), pointMarker(pointMarker)
 {
     this->dane = parser(function);
@@ -25,12 +25,12 @@ void Chart::setPointMarker(QPixmap pointMarker)
     this->pointMarker = pointMarker;
 }
 
-QPen& Chart::getLineStyle() const
+const QPen& Chart::getLineStyle()
 {
     return this->lineStyle;
 }
 
-QPixmap& Chart::getPointMarker() const
+const QPixmap& Chart::getPointMarker()
 {
     return this->pointMarker;
 }

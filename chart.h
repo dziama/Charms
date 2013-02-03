@@ -76,12 +76,13 @@ class CHARMSSHARED_EXPORT Chart
             (do zmian służą metody setLineStyle i setPointMarker).
         */
 
-        QPen& getLineStyle() const;
-        QPixmap& getPointMarker() const;
+        const QPen& getLineStyle();
+        const QPixmap& getPointMarker();
 
     private:
         QPen lineStyle;
         QPixmap pointMarker;
         Wyrazenie* dane;
+};
 
 #endif // CHART_H

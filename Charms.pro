@@ -13,7 +13,6 @@ SOURCES += chartplane.cpp \
     chart.cpp \
     parser/zmienna.cpp \
     parser/wyrazeniejednoargumentowe.cpp \
-    parser/wyrazenie.cpp \
     parser/stalaliczbowa.cpp \
     parser/split.cpp \
     parser/sinus.cpp \
@@ -24,7 +23,8 @@ SOURCES += chartplane.cpp \
     parser/logarytmnaturalny.cpp \
     parser/dzielenie.cpp \
     parser/dodawanie.cpp \
-    parser/cosinus.cpp
+    parser/cosinus.cpp \
+    parser/wyrazeniedwuargumentowe.cpp
 
 HEADERS += chartplane.h\
         Charms_global.h \
@@ -43,7 +43,8 @@ HEADERS += chartplane.h\
     parser/logarytmnaturalny.h \
     parser/dzielenie.h \
     parser/dodawanie.h \
-    parser/cosinus.h
+    parser/cosinus.h \
+    parser/wyrazeniedwuargumentowe.h
 
 unix:!symbian {
     maemo5 {

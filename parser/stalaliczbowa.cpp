@@ -6,5 +6,7 @@ StalaLiczbowa::StalaLiczbowa(double a)
 }
 
 double StalaLiczbowa::oblicz(double x) {
+    (void)x;
+
     return a;
 }
