@@ -94,6 +94,10 @@ class CHARMSSHARED_EXPORT ChartPlane : public QWidget
         double centerX;
         double centerY;
         double radius;
+
+        void drawAxes (QPainter& painter);
+        void drawCharts (QPainter& painter);
+        void drawLabels (QPainter& painter);
 };
 
 #endif // CHARTPLANE_H

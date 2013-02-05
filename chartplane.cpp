@@ -3,6 +3,8 @@
 #include <QPainter>
 #include <QPoint>
 
+#include <cmath>
+
 ChartPlane::ChartPlane(QWidget *parent,
                        double unit,
                        double centerX,
@@ -25,13 +27,32 @@ void ChartPlane::addChart(Chart* chart)
     this->charts->push_back(chart);
 }
 
-void ChartPlane::paintEvent(QPaintEvent *e)
+void ChartPlane::drawAxes (QPainter& painter)
 {
-    (void)e;
+    // "Fizyczna" szerokość i wysokość pojedynczej jednostki w pikselach.
+    double unitW = this->width()/(2 * this->radius);
+    double unitH = this->height()/(2 * this->radius);
 
-    QPainter painter(this);
+    if (this->centerX < this->radius and this->centerX > -this->radius)
+    {
+        double oY = abs(this->centerX - this->radius) * unitW;
+        painter.drawLine(oY, 0, oY, this->height());
+    }
+
+    if (this->centerY < this->radius and this->centerY > -this->radius)
+    {
+        double oX = abs(this->centerY + this->radius) * unitH;
+        painter.drawLine(0, oX, this->width(), oX);
+    }
+}
+
+void ChartPlane::drawCharts (QPainter& painter)
+{
     int j = (this->width())/d; // Liczba punktów do narysowania. 'd' - "dokładność".
+
+    // Zmiana argumentu - odległość pomiędzy kolejnymi x-ami, dla których wyliczamy wartość funkcji.
     double skok = 2*this->radius/j;
+
     double unitW = this->width()/(2 * this->radius);
     double unitH = this->height()/(2 * this->radius);
 
@@ -57,4 +78,20 @@ void ChartPlane::paintEvent(QPaintEvent *e)
         painter.drawPolyline(table, j);
         delete table;
     }
+}
+
+void ChartPlane::drawLabels (QPainter& painter)
+{
+
+}
+
+
+void ChartPlane::paintEvent(QPaintEvent *e)
+{
+    (void)e;
+
+    QPainter painter(this);
+    this->drawAxes(painter);
+    this->drawCharts(painter);
+    this->drawLabels(painter);
 }
