@@ -53,7 +53,7 @@ class CHARMSSHARED_EXPORT ChartPlane : public QWidget
         void setUnit(double newUnit);
         
         // Zwraca obecnie ustawiona jednostke.
-        double getUnit();
+        double getUnit() {return this->unit;}
         
         /* 
             Metody przesuwaja wykresy wzdluz
@@ -76,16 +76,14 @@ class CHARMSSHARED_EXPORT ChartPlane : public QWidget
         /*
             Metody dodaja lub usuwaja wykres z plaszczyzny.
         */
-        void addChart(Chart* chart); // <- trzeba zaimplementować! dodaje wykres do wektora.
+        void addChart(Chart* chart);
         void removeChart(Chart* chart);
         
-        // Zwraca obiekt obrazka z aktualna zawartoscia plaszczyzny.
-        QImage getSnapshot();
-
         // W reakcji na konieczność odrysowania obiektu...
         void paintEvent(QPaintEvent *e);
 
-        static const double d = 10;
+        static const double d;
+        static const int margin;
 
     private:
         std::vector<Chart*> *charts;

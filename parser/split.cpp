@@ -6,7 +6,7 @@ using namespace std;
     vector<string> split_by_space(const string& str){
         vector<string> tokens;
         string buf = "";
-        for(int i = 0; i < str.length(); i++) {
+        for(unsigned int i = 0; i < str.length(); i++) {
             if(str[i] != ' ') {
                 buf += str[i];
             }
